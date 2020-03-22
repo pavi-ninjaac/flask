@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display the image</title>
+</head>
+<body>
+<h1>message::</h1>
+{% if msg %}
+<h1>{{ msg }}</h1>
+{% endif %}
+<br/>
+<hr/>
+<h1>IMAGES:</h1>
+{% if img_src %}
+<img src={{"img_src"}}>
+{% endif %}
+<hr/>
+<h1>RESULT:</h1>
+{% if text %}
+<p>the extracted text from this image is...........{{ text }}</p>
+{% endif %}
+
+</body>
+</html>
