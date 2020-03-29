@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>crud application</title>
+
+</head>
+<body>
+<form action="/bicks" method="GET">
+  <button type="submit">click here to know all bicks</button>
+</form>
+<form action="/bicks/new" method="POST">
+  <button type="submit">add new</button>
+</form>
+<form action="/bicks/show" method="POST">
+  ENter your id to fine your bick
+  <input type="text" name="bick_id">
+  <button type="submit">find name</button>
+</form>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
