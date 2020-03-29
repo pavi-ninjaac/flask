@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        {% for bi in bics %}
+        <li>
+            {{ bi.id }}
+        </li>
+        <li>
+            {{ bi.brand }}
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
