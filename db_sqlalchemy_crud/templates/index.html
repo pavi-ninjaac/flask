@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}
+information
+
+{% endblock %}
+{% block content %}
+  <div class="jumbotron text-center" style="height:50px;">
+    <h1>This is a model database</h1>
+  </div>
+  <button class="btn btn-primary btn-lg "  type="button" data-toggle="collapse" data-target="#mycollapse">
+		Touch to see datas
+	</button>
+  <div class="collapse" id="mycollapse">
+    <div class="p-3 m-5 jumbotron">
+      <h4>Manage Bick <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
+      data-target="#addmodel">Add new bick</button> </h4>
+
+      <table class="table table-hover table-dark">
+{% if bics %}
+
+        <tr>
+          <th>ID</th>
+          <th>Brand</th>
+          <th>Action</th>
+        </tr>
+{% for bi in bics %}
+        <tr>
+          <td>{{bi.id}}</td>
+          <td>{{bi.brand}}</td>
+          <td>
+          <button href="" class="btn btn-success gtn-sm" data-target="#editmaodel{{bi.id}}" data-toggle="modal">edit</button>
+          <a href="/bicks/delete/{{bi.id}}" class="btn btn-danger gtn-sm" onclick="return confirm('are you sure you want to delete?')">Delete</a>
+          </td>
+        </tr>
+<div class="modal fade" id="editmaodel{{bi.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/bicks/update" method="POST">
+          <div class="form-group">
+             <label class="col-form-label">Model ID: {{bi.id}}</label><br/>
+            <input type="hidden" class="form-control" name="model_ID" value="{{bi.id}}">
+            <label class="col-form-label">Model Name:</label>
+            <input type="text" class="form-control" name="model_name" value="{{bi.brand}}">
+          </div>
+
+          <button type="submit" class="btn btn-primary float-right">Edit Model</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+      </table>
+
+{% endif %}
+
+    </div>
+<div class="modal fade" id="addmodel" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/bicks" method="POST">
+          <div class="form-group">
+            <label class="col-form-label">Model ID:</label>
+            <input type="text" class="form-control" name="model_ID">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Model Name:</label>
+            <input type="text" class="form-control" name="model_name">
+          </div>
+          <button  type="submit" class="btn btn-primary btn-lg float-right">Add Model</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+{% endblock %}
